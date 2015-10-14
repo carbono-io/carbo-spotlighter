@@ -1,0 +1,17 @@
+{
+  "name": "carbo-spotlighter",
+  "version": "0.0.0",
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "carbo-spotlighter",
+    "carbo-spotlighters"
+  ],
+  "dependencies": {
+    "lodash": "~3.10.1",
+    "polymer": "~1.1.3"
+  }
+}

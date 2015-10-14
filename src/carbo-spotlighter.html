@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="carbo-spotlighter-styles.html">
+
+<dom-module id="carbo-spotlighter">
+    <style include="carbo-spotlighter-styles"></style>
+
+    <template>
+        <svg
+            id="wrapper"
+            version="1.1"
+            baseProfile="full"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <mask id="mask">
+                <!-- hide -->
+                <rect width="100%" height="100%" fill="white"/>
+
+                <!-- group of svgs that compose the aperture -->
+                <!-- <g id="aperture-container"></g> -->
+            </mask>
+
+            <!-- shade -->
+            <rect
+                width="100%"
+                height="100%"
+                fill="rgba(0, 0, 0, 0.7)"
+                mask="url(#mask)"/>
+
+        </svg>
+    </template>
+
+    <script src="../lodash/lodash.js"></script>
+    <script src="carbo-spotlighter.js"></script>
+</dom-module>

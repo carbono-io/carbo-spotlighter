@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title></title>
+
+    <script>
+        window.Polymer = window.Polymer || {};
+        window.Polymer.dom = 'shadow';
+    </script>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../src/carbo-spotlighter.html">
+    <style type="text/css">
+
+        body {
+            background-color: cyan;
+
+            margin: 0 0;
+        }
+
+        #item {
+            position: absolute;
+            top: 100px;
+            left: 80px;
+
+            background-color: navy;
+            color: white;
+        }
+
+        #fixed {
+            position: fixed;
+            bottom: 70px;
+            right: 50px;
+
+            width: 100px;
+
+            z-index: 400;
+        }
+
+        #relative {
+            position: relative;
+            z-index: 400;
+
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <template is="dom-bind">
+
+        <div id="item">
+            lalala
+        </div>
+
+        <div id="fixed">
+            loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew 
+        </div>
+
+        <div id="normal">
+            lalala
+        </div>
+
+    <!--     <div id="relative">
+            loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew loqwemqw eqwe jhqwkejh kqjweh nqwhe qhwei qnwe hqwe hqwhe kqhew 
+        </div> -->
+
+        <carbo-spotlighter
+            id="spotlighter">
+        </carbo-spotlighter>
+
+    </template>
+
+    <script type="text/javascript">
+
+        window.addEventListener('WebComponentsReady', function () {
+            window.spotlighter = document.getElementById('spotlighter');
+
+            // spotlighter.setTargetElements('div');
+            
+
+            var rects = [];
+            rects.push({
+                top: 20,
+                left: 50,
+                bottom: 50,
+                right: 100
+            });
+
+            rects.push({
+                top: 130,
+                left: 180,
+                bottom: 300,
+                right: 400
+            });
+            
+            spotlighter.setTargetBoundingRects(rects);
+
+            setTimeout(function () {
+            spotlighter.setTargetElements('div');
+
+        }, 1000)
+        });
+    </script>
+
+</body>
+</html>
