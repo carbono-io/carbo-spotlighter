@@ -54,7 +54,6 @@
                 elements = Array.prototype.slice.call(elements, 0);
             }
 
-
             // get bounding rects
             var boundingRects = elements.map(function (element) {
                 return element.getBoundingClientRect();
