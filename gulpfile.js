@@ -131,6 +131,7 @@ var vulcanizePipe = lazypipe()
         excludes: [
             // Exclude polymer, as it is a common dependency
             path.join(TMP_DIR, '/polymer/polymer.html'),
+            path.join(TMP_DIR, '/lodash/lodash.js')
         ],
         inlineScripts: true,
         inlineCss: true,

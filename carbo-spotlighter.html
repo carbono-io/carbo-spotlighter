@@ -1,0 +1,24 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="../polymer/polymer.html">
+</head><body><div hidden="" by-vulcanize=""><dom-module id="carbo-spotlighter-styles" assetpath="/"><template><style>#wrapper {position: fixed;z-index: 2;top: 0;left: 0;height: 100%;width: 100%;}#wrapper.hidden {width: 0;height: 0;}</style></template></dom-module></div><dom-module id="carbo-spotlighter">
+    <style include="carbo-spotlighter-styles"></style>
+
+    <template>
+        <svg id="wrapper" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+
+            <mask id="mask">
+                
+                <rect width="100%" height="100%" fill="white"></rect>
+
+                
+                
+            </mask>
+
+            
+            <rect width="100%" height="100%" fill="rgba(0, 0, 0, 0.7)" mask="url(#mask)"></rect>
+
+        </svg>
+    </template>
+
+    <script src="../lodash/lodash.js"></script>
+    <script>!function(){function t(t){var e=document.createElementNS(r,"rect"),i=this.padding;return e.setAttribute("x",t.left-i),e.setAttribute("y",t.top-i),e.setAttribute("width",t.right-t.left+2*i),e.setAttribute("height",t.bottom-t.top+2*i),e}function e(e){var n=document.createElementNS(r,"g");return n.setAttribute("id",_.uniqueId(i)),e.forEach(function(e){n.appendChild(t.call(this,e))}.bind(this)),n}var r="http://www.w3.org/2000/svg",i="carbo_spotlghter_";Polymer({is:"carbo-spotlighter",properties:{padding:{type:Number,notify:!0,value:5}},setTargetBoundingRects:function(t){this.unsetTarget();var r=e.call(this,t);this.$.mask.appendChild(r),this.set("currentApertureGroup",r)},setTargetElements:function(t){"string"==typeof t?(t=document.querySelectorAll(t),t=Array.prototype.slice.call(t,0)):_.isArray(t)||(t=Array.prototype.slice.call(t,0));var e=t.map(function(t){return t.getBoundingClientRect()}.bind(this));this.setTargetBoundingRects(e)},unsetTarget:function(){this.currentApertureGroup&&(this.$.mask.removeChild(this.currentApertureGroup),this.set("currentApertureGroup",!1))},hide:function(){Polymer.Base.toggleClass("hidden",!0,this.$.wrapper)},show:function(){Polymer.Base.toggleClass("hidden",!1,this.$.wrapper)}})}();</script>
+</dom-module></body></html>
