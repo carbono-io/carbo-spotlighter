@@ -1,7 +1,7 @@
 (function () {
 
     // CONSTANTS
-    var SVG_NS = 'http://www.w3.org/2000/svg';
+    var SVG_NS               = 'http://www.w3.org/2000/svg';
     var CARBO_SPOTLIGHTER_NS = 'carbo_spotlghter_';
 
     Polymer({
@@ -29,7 +29,9 @@
             this.$.mask.appendChild(apertureGroup);
 
             // save reference to active apertureGroup
-            this.set('currentApertureGroup', apertureGroup);
+            this.set('_currentApertureGroup', apertureGroup);
+
+            return this;
         },
 
         /**
@@ -59,27 +61,51 @@
             }.bind(this));
 
             this.setTargetBoundingRects(boundingRects);
+
+            return this;
         },
 
+        /**
+         * Destroys the target highlighters
+         */
         unsetTarget: function () {
+
+            var _currentApertureGroup = this.get('_currentApertureGroup');
+
             // remove current active group
-            if (this.currentApertureGroup) {
-                this.$.mask.removeChild(this.currentApertureGroup);
-                this.set('currentApertureGroup', false);
+            if (_currentApertureGroup) {
+                this.$.mask.removeChild(_currentApertureGroup);
+                this.set('_currentApertureGroup', false);
             }
+
+            return this;
         },
 
+        /**
+         * Hides the spotlighter
+         */
         hide: function () {
             Polymer.Base.toggleClass('hidden', true, this.$.wrapper);
+
+            return this;
         },
 
+        /**
+         * Shows the spotlighter
+         */
         show: function () {
             Polymer.Base.toggleClass('hidden', false, this.$.wrapper);
+
+            return this;
         },
     });
 
     /**
      * Auxiliary functions
+     */
+    
+    /**
+     * Creates and aperture rectangle
      */
     function _createAperture(boundingRect) {
         var aperture = document.createElementNS(SVG_NS, 'rect');
@@ -88,23 +114,30 @@
 
         aperture.setAttribute('x', boundingRect.left - padding);
         aperture.setAttribute('y', boundingRect.top - padding);
-        aperture.setAttribute('width', boundingRect.right - boundingRect.left + 2 * padding);
-        aperture.setAttribute('height', boundingRect.bottom - boundingRect.top + 2 * padding);
+        aperture.setAttribute('width', boundingRect.width + 2 * padding);
+        aperture.setAttribute('height', boundingRect.height + 2 * padding);
 
         return aperture;
     }
 
+    /**
+     * Creates a group of aperture svg elements
+     * from an array of boundingRects
+     * @param  {Array[BoundingRect]} boundingRects 
+     *         The bounding rect must have top, left, width & height
+     * @return {SVG g element}
+     */
     function _createApertureGroup(boundingRects) {
-        var group = document.createElementNS(SVG_NS, 'g');
-        group.setAttribute('id', _.uniqueId(CARBO_SPOTLIGHTER_NS));
+        var apertureGroup = document.createElementNS(SVG_NS, 'g');
+        apertureGroup.setAttribute('id', _.uniqueId(CARBO_SPOTLIGHTER_NS));
 
         boundingRects.forEach(function (rect) {
 
-            group.appendChild(_createAperture.call(this, rect));
+            apertureGroup.appendChild(_createAperture.call(this, rect));
 
         }.bind(this));
 
-        return group;
+        return apertureGroup;
     }
 
 })();
